@@ -1,0 +1,29 @@
+fallOff_distribution=2	
+
+protein=Sox2	copy_number=2	sliding_distance=40	maxHopDistance=42	hopnotjumpChance=0.70
+protein=Pou5f1	copy_number=2	sliding_distance=40	maxHopDistance=42	hopnotjumpChance=0.70
+
+coop_interactions
+SOX2..POU5F1	weight=1.5	maxDist=24	state=onebound
+end_interactions
+
+#
+# EXAMPLE:
+#fallOff_distribution=2  #gaussian	
+#histModDensityThreshold=0   #not used but it should be unless I make script calculate lowest value
+#maxHopDistance=42
+#hopnotjumpChance=0.70        # means 7/10 occassions leaving the DNA results in a hop, thus jump is 0.30 (1-0.70). Is a global value, but perhaps should be protein specific?
+#
+#protein=Sox2	copy_number=100	sliding_distance=40 # default copy# =1, which is about right for 10kb seq considering ~5000 prot per effective open genome
+#protein=Pou5f1	copy_number=100	sliding_distance=40	maxHopDistance=42	hopnotjumpChance=0.7
+#protein=Foxa2	copy_number=1	sliding_distance=40	maxHopDistance=42	hopnotjumpChance=0.7	pioneer=true #a pioneer ignores sequence accessibility
+#
+#coop_interactions
+#SOX2..POU5F1	weight=1.5	maxDist=24	state=onebound  #the first 3 are needed, state has a default of 'onebound' 
+#end_interactions
+#
+# INTERACTION NOTES:
+# interactions state = "twobound", requires both prot to have bound a site, "onebound" requires only one of them bound.
+#    the two states are because of obvious choices (two TFs both require binding sites to interact or only one TF needs to be bound to interact with other), but also because of how matrices exist. Some matrices present 2 TFs binding, so in simulator really only one protein needs to be present and the other just needs to be close by
+# No direction yet e.g. A-B vs B-A on seq., but this should be used for cases when matrix represents two proteins and thus the two proteins can only interact in one orientation
+
